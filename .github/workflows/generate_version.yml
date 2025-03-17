@@ -1,0 +1,43 @@
+name: Generate version.json
+
+on:
+    workflow_run:
+        workflows: ["Fetch release ai-backend"]
+        types:
+            - completed
+
+jobs:
+  generate_version_json:
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout current repository
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+
+        - name: Read release.json files and generate version.json
+          run: |
+            mkdir -p version
+            
+            # สร้าง JSON โครงสร้างเริ่มต้น
+            echo '{"version": "0.0.0", "services": []}' > version/version.json
+
+            # อ่านไฟล์ release.json จากทุกโฟลเดอร์ใน release/
+            for file in $(find release/ -name "release.json"); do
+              SERVICE_JSON=$(cat $file | jq -c)
+              jq --argjson service "$SERVICE_JSON" '.services += [$service]' version/version.json > version/tmp.json && mv version/tmp.json version/version.json
+            done
+
+            # แสดงผลลัพธ์
+            cat version/version.json
+
+        - name: Commit & Push changes
+          run: |
+              git config --global user.email "github-actions[bot]@users.noreply.github.com"
+              git config --global user.name "github-actions[bot]"
+              git add version/version.json
+              git commit -m "Update version.json from release.json" || echo "No changes to commit"
+              git push origin main
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
