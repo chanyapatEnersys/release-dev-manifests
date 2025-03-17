@@ -8,8 +8,8 @@
     },
     {
       "name": "lineconnect-service",
-      "version": "0.0.46",
-      "hash": "sha256:d835a16c59edbc11fefbd7ac716a513575109b98af7bb137f6411bbc93c873a2"
+      "version": "0.0.60",
+      "hash": "sha256:a668c8f74adcec527207d2b9a34644342b64c20c453eaca20ef8f066a9e409ed"
     },
     {
       "name": "channel-service",
@@ -28,8 +28,8 @@
     },
     {
       "name": "account-service",
-      "version": "0.0.58",
-      "hash": "sha256:47f74f8326b8d572f8af5297c1fd8d0f476a7bad973e81f62707c4fd7d6969e7"
+      "version": "0.0.60",
+      "hash": "sha256:f91cd06c2533c615a9ffd29d73aec8c439b16313dc4f2b82cc8674618edcf3df"
     },
     {
       "name": "chat-service",
