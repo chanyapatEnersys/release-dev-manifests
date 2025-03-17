@@ -22,6 +22,7 @@ env:
   CHAT_SERVICE: chat-service
   LINECONNCET_SERVICE: lineconnect-service
   UPLOAD_SERVICE: upload-service
+  WEB_SERVICE: web
 
 
 jobs:
@@ -43,6 +44,14 @@ jobs:
         
         - name: Remove .git from test-pipeline
           run: rm -rf test-pipeline/.git  
+
+        - name: Checkout enersys-AI-website repository (web ui)
+          uses: actions/checkout@v4
+          with:
+            repository: enersys/enersys-AI-website
+            token: ${{ secrets.WORKFLOW_TOKEN }}
+            path: enersys-AI-website
+           
   
         - name: Copy release.json to this repo
           run: |
@@ -58,6 +67,8 @@ jobs:
             cp -r test-pipeline/apps/${{env.LINECONNCET_SERVICE}}/release.json release/lineconnect/release.json
             mkdir -p release/upload
             cp -r test-pipeline/apps/${{env.UPLOAD_SERVICE}}/release.json release/upload/release.json
+            mkdir -p release/ai-web
+            cp -r enersys-AI-website/apps/${{env.WEB_SERVICE}}/release.json release/ai-web/release.json
 
         - name: Check if WORKFLOW_TOKEN is set
           run: |
