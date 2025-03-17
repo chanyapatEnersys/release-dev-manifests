@@ -53,14 +53,14 @@ jobs:
         - name: Print WORKFLOW_TOKEN (masked)
           run: | 
             echo "WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}"
-
-        - name: Commit & Push changes
-          uses: actions-js/push@master
-          with:
-            github_token: ${{ secrets.WORKFLOW_TOKEN }}
-            branch: main
-            message: "Update Kubernetes manifests after deployment"
-
   
-
+        - name: Commit & Push changes to current repository
+          run: |
+              git config --global user.email "github-actions[bot]@users.noreply.github.com"
+              git config --global user.name "github-actions[bot]"
+              git add release/
+              git commit -m "Update release.json from test-pipeline" || echo "No changes to commit"
+              git push origin main
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
