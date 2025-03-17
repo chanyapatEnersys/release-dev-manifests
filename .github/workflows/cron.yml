@@ -6,6 +6,13 @@ on:
           - main
     schedule:
         - cron: '* * * * *'
+        
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+  actions: write
+
 
 jobs:
   fetch_release_json:
