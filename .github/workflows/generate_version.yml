@@ -6,6 +6,13 @@ on:
         types:
             - completed
 
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+  actions: write
+
+
 jobs:
   generate_version_json:
     runs-on: ubuntu-latest
