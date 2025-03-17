@@ -14,6 +14,15 @@ permissions:
   id-token: write
   actions: write
 
+env:
+  REPO_AI_BACKEND: enersys/enersys-AI-backend
+  ACCOUNT_SERVICE: account-api
+  AGENT_SERVICE: agent-service
+  CHANNEL_SERVICE: channel-service
+  CHAT_SERVICE: chat-service
+  LINECONNCET_SERVICE: lineconnect-service
+  UPLOAD_SERVICE: upload-service
+
 
 jobs:
   fetch_release_json:
@@ -38,9 +47,17 @@ jobs:
         - name: Copy release.json to this repo
           run: |
             mkdir -p release/account
-            cp -r test-pipeline/apps/account-api/release.json release/account/release.json
+            cp -r test-pipeline/apps/${{env.ACCOUNT_SERVICE}}/release.json release/account/release.json
             mkdir -p release/agent
-            cp -r test-pipeline/apps/agent-service/release.json release/agent/release.json
+            cp -r test-pipeline/apps/${{env.AGENT_SERVICE}}/release.json release/agent/release.json
+            mkdir -p release/channel
+            cp -r test-pipeline/apps/${{env.CHANNEL_SERVICE}}/release.json release/channel/release.json
+            mkdir -p release/chat
+            cp -r test-pipeline/apps/${{env.CHAT_SERVICE}}/release.json release/chat/release.json
+            mkdir -p release/lineconnect
+            cp -r test-pipeline/apps/${{env.LINECONNCET_SERVICE}}/release.json release/lineconnect/release.json
+            mkdir -p release/upload
+            cp -r test-pipeline/apps/${{env.UPLOAD_SERVICE}}/release.json release/upload/release.json
 
         - name: Check if WORKFLOW_TOKEN is set
           run: |
