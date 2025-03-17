@@ -23,6 +23,9 @@ jobs:
             repository: chanyapatEnersys/test-pipeline
             token: ${{ secrets.WORKFLOW_TOKEN }}
             path: test-pipeline
+        
+        - name: Remove .git from test-pipeline
+          run: rm -rf test-pipeline/.git  
   
         - name: Copy release.json to this repo
           run: |
