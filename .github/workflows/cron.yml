@@ -1,11 +1,8 @@
 name: Fetch release ai-backend
 
 on:
-    push:
-        branches:
-          - main
     schedule:
-        - cron: '* * * * *'
+        - cron: '*/2 * * * *'
         
 permissions:
   contents: write
