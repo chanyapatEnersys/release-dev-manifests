@@ -1,0 +1,14 @@
+name: Update Release Manifest
+
+on:
+  push:
+    paths:
+      - 'release/*.json'  # Trigger เมื่อไฟล์ release.json เปลี่ยนแปลง
+
+
+jobs:
+  update-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4

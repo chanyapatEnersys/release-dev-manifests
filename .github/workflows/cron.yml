@@ -1,0 +1,43 @@
+name: Fetch release ai-backend
+
+on:
+    push:
+        branches:
+          - main
+    schedule:
+        - cron: '* * * * *'
+
+jobs:
+  fetch_release_json:
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout current repository
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+  
+        - name: Checkout release-dev repository (backend ai)
+          uses: actions/checkout@v4
+          with:
+            repository: chanyapatEnersys/test-pipeline
+            token: ${{ secrets.WORKFLOW_TOKEN }}
+            path: test-pipeline
+  
+        - name: Copy release.json to this repo
+          run: |
+            mkdir -p release/account
+            cp -r test-pipeline/apps/account-api/release.json release/account/release.json
+            mkdir -p release/agent
+            cp -r test-pipeline/apps/agent-service/release.json release/agent/release.json
+
+        - name: Commit & Push changes
+          uses: actions-js/push@master
+          with:
+            github_token: ${{ secrets.WORKFLOW_TOKEN }}
+            branch: main
+            message: "Update Kubernetes manifests after deployment"
+
+  
+
+

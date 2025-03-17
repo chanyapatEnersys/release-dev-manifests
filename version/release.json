@@ -1,0 +1,35 @@
+{
+  "version": "0.0.0",
+  "services": [
+    {
+      "name": "agent-service",
+      "version": "0.0.32",
+      "hash": "sha256:1f7f165139f5fb8885296780a15c42621e68f1d1a597315ab93884c7d8f82a64"
+    },
+    {
+      "name": "account-service",
+      "version": "0.0.39",
+      "hash": "sha256:8ac348bd98ba445ac4e16d4908f6817d8768e539f125319f499ca2cc6902033b"
+    },
+    {
+      "name": "lineconnect-service",
+      "version": "0.0.34",
+      "hash": "sha256:6284997d29dd62144283d8e7e835293291e6e84cb6a3b7e89d9445f4c7e969c7"
+    },
+    {
+      "name": "upload-service",
+      "version": "0.0.32",
+      "hash": "sha256:71d3cdd3b2b66e1e7f6ad781a1e354e659b53b5af8060ec7abfc2acb33940064"
+    },
+    {
+      "name": "channel-service",
+      "version": "0.0.32",
+      "hash": "sha256:8c3cda34925fb1a498e4cc677f59b8ebfa1646fbe64d9f8a14a7b9045a2d0bbe"
+    },
+    {
+      "name": "chat-service",
+      "version": "0.0.32",
+      "hash": "sha256:54d18ade555f171cecd33c990affa4429230435a7383a391750af542904f056a"
+    }
+  ]
+}
